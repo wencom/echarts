@@ -3,16 +3,16 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { EchartsBoardComponent } from './echarts-board/echarts-board.component';
+import { RoutesModule } from './routes/routes.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    EchartsBoardComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    RoutesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
