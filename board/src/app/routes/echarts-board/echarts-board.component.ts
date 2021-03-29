@@ -8,6 +8,10 @@ import {Component, EventEmitter, OnInit} from '@angular/core';
 export class EchartsBoardComponent implements OnInit {
 
   constructor() { }
+  x: number = 12;
+  y: number = 4;
+  row: number[] = [];
+  col: number[] = [];
 
   data1 = [
     [0, 0, 5], [1, 0, 1], [4, 0, 0], [5, 0, 0], [6, 0, 0], [9, 0, 0], [10, 0, 0],
@@ -28,14 +32,14 @@ export class EchartsBoardComponent implements OnInit {
     legend: {},
     xAxis: {
       type: "category",
-      data: [1,2,3,4,5,6,7,8,9,10,11,12],
+      data: this.row,
       splitArea: {
         show: true
       }
     },
     yAxis: {
       type: 'category',
-      data: [1,2,3,4],
+      data: this.col,
       splitArea: {
         show: true
       }
@@ -49,7 +53,7 @@ export class EchartsBoardComponent implements OnInit {
         //   return [item[0], item[1], item[2]==0?null:item[2]]
         // }),
         label: {
-          show: true
+          show: true,
         },
         emphasis: {
           itemStyle: {
@@ -89,7 +93,10 @@ export class EchartsBoardComponent implements OnInit {
     ]
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    for(let i=1;i<=this.x;i++) this.row.push(i);
+    for(let j=1;j<=this.y;j++) this.col.push(j);
+  }
 
   testFun(event: any) {
     console.log("param", event);
