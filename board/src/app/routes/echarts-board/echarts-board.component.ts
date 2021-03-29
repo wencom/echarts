@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-echarts-board',
@@ -70,7 +70,7 @@ export class EchartsBoardComponent implements OnInit {
             shadowBlur: 10,
             shadowColor: 'rgba(0, 0, 0, 0.5)'
           }
-        }
+        },
       },
       {
         name: "直径1.8m",
@@ -91,7 +91,7 @@ export class EchartsBoardComponent implements OnInit {
 
   ngOnInit() {}
 
-  testFun() {
+  testFun(event: any) {
     console.log("param", event);
   }
 
