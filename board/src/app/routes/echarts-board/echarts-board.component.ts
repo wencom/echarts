@@ -28,9 +28,8 @@ export class EchartsBoardComponent implements OnInit {
 
   //[编号,描述,颜色]
   types = [
-    ['001', '直径1.2m', 'red'], ['002', '直径1.6m', 'yellow'], ['003', '直径1.8m', 'blue']
+    ['001', '直径1.2m', 'green'], ['002', '直径1.6m', 'yellow'], ['003', '直径1.8m', 'blue']
   ];
-
 
   option2D = {
     backgroundColor: '#333',
@@ -273,7 +272,7 @@ export class EchartsBoardComponent implements OnInit {
           color: '#900'
         },
         itemStyle: {
-          color: 'green'
+          color: 'red'
         }
       }
     }]
