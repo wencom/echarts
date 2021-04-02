@@ -33,10 +33,12 @@ export class EchartsBoardComponent implements OnInit {
 
 
   option2D = {
+    //坐标标题
     title: {
       text: '轮胎库平面图',
       left: 'center'
     },
+    //悬浮框
     tooltip: {
       trigger: 'item',
       axisPointer: {
@@ -51,10 +53,12 @@ export class EchartsBoardComponent implements OnInit {
         ].join('<br/>')
       }
     },
+    //画板尺寸
     grid: {
       left: '20%',
       right: '20%'
     },
+    //X轴
     xAxis: {
       type: "category",
       data: this.row,
@@ -62,6 +66,7 @@ export class EchartsBoardComponent implements OnInit {
         show: true
       }
     },
+    //Y轴
     yAxis: {
       type: 'category',
       data: this.col,
@@ -69,22 +74,24 @@ export class EchartsBoardComponent implements OnInit {
         show: true
       }
     },
+    //视觉映射组件, 此处作为区分类型的颜色表示
     visualMap: {
-      top: 30,
+      top: 30,    //类型标签置于坐标上方
       type: 'piecewise',
       pieces: this.types.map(function (item) {
-        return {lte: item[0], gte: item[0], label: item[1], color: item[2], symbolSize: 60}
+        return {lte: item[0], gte: item[0], label: item[1], color: item[2], symbolSize: 60 /*散点大小*/}
       }),
       calculable: true,
       orient: 'horizontal',
       left: 'center',
     },
+    //系列， 绘制图形
     series: [
       {
         name: "Tire details",
-        // type: 'heatmap',
+        // type: 'heatmap',     //热力图系列、散点系列都可用
         type: 'scatter',
-        symbol: 'rect',
+        symbol: 'rect', //散点类型，默认为圆点
         data: this.data1.map(item =>{
           if(item[2]!=0) {
             return [item[0], item[1], item[2], item[3]]
