@@ -16,15 +16,21 @@ export class EchartsBoardComponent implements OnInit {
 
   //[x坐标,y坐标,数量,类型]
   data1 = [
-    [0, 0, 9, "直径1.2m"], [1, 0, 1, "直径1.2m"], [4, 0, 0, "直径1.2m"], [5, 0, 2, "直径1.2m"], [6, 0, 0, "直径1.2m"], [9, 0, 0, "直径1.2m"], [10, 0, 0, "直径1.2m"],
-    [1, 1, 0, "直径1.2m"], [2, 1, 0, "直径1.2m"], [3, 1, 0, "直径1.2m"], [4, 1, 0, "直径1.2m"], [6, 1, 0, "直径1.2m"], [7, 1, 0, "直径1.2m"], [10, 1, 5, "直径1.2m"],
-    [1, 2, 1, "直径1.2m"], [2, 2, 0, "直径1.2m"], [4, 2, 0, "直径1.2m"], [6, 2, 0, "直径1.2m"], [7, 2, 0, "直径1.2m"], [9, 2, 0, "直径1.2m"], [11, 2, 2, "直径1.2m"],
-    [2, 3, 0, "直径1.2m"], [3, 3, 0, "直径1.2m"], [5, 3, 0, "直径1.2m"], [6, 3, 0, "直径1.2m"], [9, 3, 0, "直径1.2m"], [8, 1, 0, "直径1.2m"], [11, 3, 4, "直径1.2m"],
-    [2, 0, 0, "直径1.6m"], [3, 0, 0, "直径1.6m"], [3, 2, 0, "直径1.6m"], [7, 3, 0, "直径1.6m"], [10, 2, 3, "直径1.6m"], [10, 3, 5, "直径1.6m"],
-    [0, 1, 7, "直径1.6m"], [0, 2, 1, "直径1.6m"], [8, 2, 0, "直径1.6m"], [9, 1, 0, "直径1.6m"], [8, 3, 1, "直径1.6m"], [11, 1, 2, "直径1.6m"],
-    [0, 3, 7, "直径1.8m"], [1, 3, 3, "直径1.8m"], [5, 2, 0, "直径1.8m"], [8, 0, 0, "直径1.8m"],
-    [5, 1, 0, "直径1.8m"], [4, 3, 0, "直径1.8m"], [7, 0, 0, "直径1.8m"], [11, 0, 2, "直径1.8m"]
+    [0, 0, 9, '001'], [1, 0, 1, '001'], [4, 0, 0, '001'], [5, 0, 2, '001'], [6, 0, 0, '001'], [9, 0, 0, '001'], [10, 0, 0, '001'],
+    [1, 1, 0, '001'], [2, 1, 0, '001'], [3, 1, 0, '001'], [4, 1, 0, '001'], [6, 1, 0, '001'], [7, 1, 0, '001'], [10, 1, 5, '001'],
+    [1, 2, 1, '001'], [2, 2, 0, '001'], [4, 2, 0, '001'], [6, 2, 0, '001'], [7, 2, 0, '001'], [9, 2, 0, '001'], [11, 2, 2, '001'],
+    [2, 3, 0, '001'], [3, 3, 0, '001'], [5, 3, 0, '001'], [6, 3, 0, '001'], [9, 3, 0, '001'], [8, 1, 0, '001'], [11, 3, 4, '001'],
+    [2, 0, 0, '002'], [3, 0, 0, '002'], [3, 2, 0, '002'], [7, 3, 0, '002'], [10, 2, 3, '002'], [10, 3, 5, '002'],
+    [0, 1, 7, '002'], [0, 2, 1, '002'], [8, 2, 0, '002'], [9, 1, 0, '002'], [8, 3, 1, '002'], [11, 1, 2, '002'],
+    [0, 3, 7, '003'], [1, 3, 3, '003'], [5, 2, 0, '003'], [8, 0, 0, '003'],
+    [5, 1, 0, '003'], [4, 3, 0, '003'], [7, 0, 0, '003'], [11, 0, 2,'003']
   ];
+
+  //[编号,描述,颜色]
+  types = [
+    ['001', '直径1.2m', 'red'], ['002', '直径1.6m', 'yellow'], ['003', '直径1.8m', 'green']
+  ];
+
 
   option2D = {
     tooltip: {
@@ -50,11 +56,9 @@ export class EchartsBoardComponent implements OnInit {
     },
     visualMap: {
       type: 'piecewise',
-      pieces: [
-        {lte:"直径1.2m", gte:"直径1.2m", label:'直径1.2m', color:'red'},
-        {lte:"直径1.6m", gte:"直径1.6m", label:'直径1.6m', color:'yellow'},
-        {lte:"直径1.8m", gte:"直径1.8m",  label:'直径1.8m', color:'green'}
-      ],
+      pieces: this.types.map(function (item) {
+        return {lte: item[0], gte: item[0], label: item[1], color: item[2]}
+      }),
       calculable: true,
       orient: 'horizontal',
       left: 'center',
@@ -72,9 +76,6 @@ export class EchartsBoardComponent implements OnInit {
           show: true,
         },
         emphasis: {
-          label: {
-            // formatter: "",
-          },
           itemStyle: {
             shadowBlur: 10,
             shadowColor: 'rgba(0, 0, 0, 0.5)'
@@ -87,14 +88,10 @@ export class EchartsBoardComponent implements OnInit {
   option3D = {
     tooltip: {},
       visualMap: {
-        // min: 0,
-        // max: 10,
         type: 'piecewise',
-        pieces: [
-          {lte:"直径1.2m", gte:"直径1.2m", label:'直径1.2m', color:'red'},
-          {lte:"直径1.6m", gte:"直径1.6m", label:'直径1.6m', color:'yellow'},
-          {lte:"直径1.8m", gte:"直径1.8m",  label:'直径1.8m', color:'green'}
-        ],
+        pieces: this.types.map(function (item) {
+          return {lte: item[0], gte: item[0], label: item[1], color: item[2]}
+        }),
         calculable: true,
         orient: 'horizontal',
         left: 'center',
@@ -133,17 +130,14 @@ export class EchartsBoardComponent implements OnInit {
         }
       }),
       shading: 'color',
-
       label: {
         show: false,
         fontSize: 16,
         borderWidth: 1
       },
-
       itemStyle: {
         opacity: 0.4
       },
-
       emphasis: {
         label: {
           fontSize: 20,

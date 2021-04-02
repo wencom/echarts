@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { RoutesRoutingModule } from './routes-routing.module';
 import { EchartsBoardComponent } from './echarts-board/echarts-board.component';
 import { NgxEchartsModule } from "ngx-echarts";
+import {NzButtonModule} from "ng-zorro-antd/button";
 
 @NgModule({
   declarations: [EchartsBoardComponent],
@@ -12,8 +13,9 @@ import { NgxEchartsModule } from "ngx-echarts";
     RoutesRoutingModule,
     NgxEchartsModule,
     NgxEchartsModule.forRoot({
-      echarts:() => import('echarts')
-    })
+      echarts: () => import('echarts')
+    }),
+    NzButtonModule
   ]
 })
 export class RoutesModule { }
