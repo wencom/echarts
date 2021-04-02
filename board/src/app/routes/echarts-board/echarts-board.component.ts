@@ -28,15 +28,20 @@ export class EchartsBoardComponent implements OnInit {
 
   //[编号,描述,颜色]
   types = [
-    ['001', '直径1.2m', 'red'], ['002', '直径1.6m', 'yellow'], ['003', '直径1.8m', 'green']
+    ['001', '直径1.2m', 'red'], ['002', '直径1.6m', 'yellow'], ['003', '直径1.8m', 'blue']
   ];
 
 
   option2D = {
+    backgroundColor: '#333',
     //坐标标题
     title: {
       text: '轮胎库平面图',
-      left: 'center'
+      left: 'center',
+      textStyle: {
+        // fontSize: 70,
+        color: 'rgba(255, 255, 255, 0.9)'
+      }
     },
     //悬浮框
     tooltip: {
@@ -64,6 +69,21 @@ export class EchartsBoardComponent implements OnInit {
       data: this.row,
       splitArea: {
         show: true
+      },
+      axisTick: {
+        lineStyle: {
+          color: '#ddd'
+        }
+      },
+      axisLine: {
+        lineStyle: {
+          color: '#ddd'
+        }
+      },
+      axisLabel: {
+        textStyle: {
+          color: '#ddd'
+        }
       }
     },
     //Y轴
@@ -72,6 +92,21 @@ export class EchartsBoardComponent implements OnInit {
       data: this.col,
       splitArea: {
         show: true
+      },
+      axisTick: {
+        lineStyle: {
+          color: '#ddd'
+        }
+      },
+      axisLine: {
+        lineStyle: {
+          color: '#ddd'
+        }
+      },
+      axisLabel: {
+        textStyle: {
+          color: '#ddd'
+        }
       }
     },
     //视觉映射组件, 此处作为区分类型的颜色表示
@@ -84,6 +119,12 @@ export class EchartsBoardComponent implements OnInit {
       calculable: true,
       orient: 'horizontal',
       left: 'center',
+      textStyle: {
+        color: '#ccc'
+      },
+      // outOfRange: {
+      //   color: '#555'
+      // }
     },
     //系列， 绘制图形
     series: [
@@ -118,27 +159,80 @@ export class EchartsBoardComponent implements OnInit {
   }
 
   option3D = {
+    backgroundColor: '#333',
     tooltip: {},
-      visualMap: {
-        type: 'piecewise',
-        pieces: this.types.map(function (item) {
-          return {lte: item[0], gte: item[0], label: item[1], color: item[2]}
-        }),
-        calculable: true,
-        orient: 'horizontal',
-        left: 'center',
+    visualMap: {
+      top: 30,
+      type: 'piecewise',
+      pieces: this.types.map(function (item) {
+        return {lte: item[0], gte: item[0], label: item[1], color: item[2]}
+      }),
+      calculable: true,
+      orient: 'horizontal',
+      left: 'center',
+      textStyle: {
+        color: '#ccc'
       },
+      outOfRange: {
+        color: '#555'
+      }
+    },
     xAxis3D: {
       type: 'category',
-      data: this.row
+      data: this.row,
+      axisTick: {
+        lineStyle: {
+          color: '#ddd'
+        }
+      },
+      axisLine: {
+        lineStyle: {
+          color: '#ddd'
+        }
+      },
+      axisLabel: {
+        textStyle: {
+          color: '#ddd'
+        }
+      }
     },
     yAxis3D: {
       type: 'category',
       data: this.col,
+      axisTick: {
+        lineStyle: {
+          color: '#ddd'
+        }
+      },
+      axisLine: {
+        lineStyle: {
+          color: '#ddd'
+        }
+      },
+      axisLabel: {
+        textStyle: {
+          color: '#ddd'
+        }
+      }
     },
     zAxis3D: {
       name: "amount",
       type: 'value',
+      axisTick: {
+        lineStyle: {
+          color: '#ddd'
+        }
+      },
+      axisLine: {
+        lineStyle: {
+          color: '#ddd'
+        }
+      },
+      axisLabel: {
+        textStyle: {
+          color: '#ddd'
+        }
+      }
     },
     grid3D: {
       boxWidth: 200,
@@ -153,7 +247,7 @@ export class EchartsBoardComponent implements OnInit {
         },
         ambient: {
           intensity: 0.3
-        }
+        },
       }
     },
     series: [{
@@ -179,13 +273,14 @@ export class EchartsBoardComponent implements OnInit {
           color: '#900'
         },
         itemStyle: {
-          color: '#900'
+          color: 'green'
         }
       }
     }]
   }
 
   occupancy = {
+    backgroundColor: '#333',
     series: [{
       type: 'gauge',
       startAngle: 90,
