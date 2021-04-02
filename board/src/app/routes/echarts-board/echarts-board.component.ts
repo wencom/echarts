@@ -33,8 +33,23 @@ export class EchartsBoardComponent implements OnInit {
 
 
   option2D = {
+    title: {
+      text: '轮胎库平面图',
+      left: 'center'
+    },
     tooltip: {
-      position: 'top',
+      trigger: 'item',
+      axisPointer: {
+        type: 'shadow'
+      },
+      formatter: (param: any) => {
+        let source = param.value;
+        return [
+          '坐标: x'+(source[0]+1)+',y'+(source[1]+1),
+          "类型: "+source[3],
+          "数量: "+source[2]
+        ].join('<br/>')
+      }
     },
     grid: {
       left: '20%',
@@ -106,12 +121,15 @@ export class EchartsBoardComponent implements OnInit {
     },
     zAxis3D: {
       name: "amount",
-      type: 'value'
+      type: 'value',
     },
     grid3D: {
       boxWidth: 200,
       boxDepth: 80,
-      // boxHeight: 100,
+      boxHeight: 100,
+      width: '100%',
+      height: '100%',
+      environment: 'auto',
       light: {
         main: {
           intensity: 1.2
@@ -149,6 +167,88 @@ export class EchartsBoardComponent implements OnInit {
       }
     }]
   }
+
+  occupancy = {
+    series: [{
+      type: 'gauge',
+      startAngle: 90,
+      endAngle: -270,
+      pointer: {
+        show: false
+      },
+      progress: {
+        show: true,
+        overlap: false,
+        roundCap: true,
+        clip: false,
+        itemStyle: {
+          borderWidth: 1,
+          borderColor: '#464646'
+        }
+      },
+      axisLine: {
+        lineStyle: {
+          width: 40
+        }
+      },
+      splitLine: {
+        show: false,
+        distance: 0,
+        length: 10
+      },
+      axisTick: {
+        show: false
+      },
+      axisLabel: {
+        show: false,
+        distance: 50
+      },
+      data: [{
+        value: 20,
+        name: 'Perfect',
+        title: {
+          offsetCenter: ['0%', '-40%']
+        },
+        detail: {
+          offsetCenter: ['0%', '-20%']
+        }
+      },
+        {
+          value: 40,
+          name: 'Good',
+          title: {
+            offsetCenter: ['0%', '0%']
+          },
+          detail: {
+            offsetCenter: ['0%', '10%']
+          }
+        },
+        {
+          value: 60,
+          name: 'Commonly',
+          title: {
+            offsetCenter: ['0%', '30%']
+          },
+          detail: {
+            offsetCenter: ['0%', '40%']
+          }
+        }
+      ],
+      title: {
+        fontSize: 14
+      },
+      detail: {
+        width: 50,
+        height: 14,
+        fontSize: 14,
+        color: 'auto',
+        borderColor: 'auto',
+        borderRadius: 20,
+        borderWidth: 1,
+        formatter: '{value}%'
+      }
+    }]
+  };
 
   ngOnInit() {
     for(let i=1;i<=this.x;i++) this.row.push(i);
