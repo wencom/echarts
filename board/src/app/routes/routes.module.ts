@@ -5,7 +5,6 @@ import { RoutesRoutingModule } from './routes-routing.module';
 import { EchartsBoardComponent } from './echarts-board/echarts-board.component';
 import { NgxEchartsModule } from "ngx-echarts";
 
-
 @NgModule({
   declarations: [EchartsBoardComponent],
   imports: [

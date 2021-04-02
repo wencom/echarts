@@ -1,2 +1,5 @@
 <p>echarts-board works!</p>
-<div echarts id="testEcharts" [options]="chartOption" class="demo-chart" (chartClick)="testFun($event)"></div>
+<div echarts [options]="option2D" class="demo-chart" (chartClick)="testFun($event)"></div>
+<div echarts  [options]="option3D" class="demo-chart" (chartClick)="testFun($event)"></div>
+
+<button type>{{'showSideBar'}}</button>
