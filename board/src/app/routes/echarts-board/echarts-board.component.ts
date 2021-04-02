@@ -70,9 +70,10 @@ export class EchartsBoardComponent implements OnInit {
       }
     },
     visualMap: {
+      top: 30,
       type: 'piecewise',
       pieces: this.types.map(function (item) {
-        return {lte: item[0], gte: item[0], label: item[1], color: item[2]}
+        return {lte: item[0], gte: item[0], label: item[1], color: item[2], symbolSize: 60}
       }),
       calculable: true,
       orient: 'horizontal',
@@ -81,21 +82,30 @@ export class EchartsBoardComponent implements OnInit {
     series: [
       {
         name: "Tire details",
-        type: 'heatmap',
+        // type: 'heatmap',
+        type: 'scatter',
+        symbol: 'rect',
         data: this.data1.map(item =>{
           if(item[2]!=0) {
             return [item[0], item[1], item[2], item[3]]
           }else return null;
         }),
         label: {
-          show: true,
+          formatter: '{@[2]}',
+          show: true
         },
-        emphasis: {
-          itemStyle: {
-            shadowBlur: 10,
-            shadowColor: 'rgba(0, 0, 0, 0.5)'
-          },
-        },
+        itemStyle: {
+          emphasis: {
+            borderColor: '#333',
+            borderWidth: 1
+          }
+        }
+        // emphasis: {
+        //   itemStyle: {
+        //     shadowBlur: 10,
+        //     shadowColor: 'rgba(0, 0, 0, 0.5)'
+        //   },
+        // },
       },
     ]
   }
