@@ -2,11 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import 'echarts-gl/dist/echarts-gl';
 
 @Component({
-  selector: 'app-echarts-board',
-  templateUrl: './echarts-board.component.html',
-  styleUrls: ['./echarts-board.component.scss']
+  selector: 'app-warehouse-3d',
+  templateUrl: './warehouse-2d.component.html',
+  styleUrls: ['./warehouse-2d.component.scss']
 })
-export class EchartsBoardComponent implements OnInit {
+export class Warehouse2dComponent implements OnInit {
 
   constructor() { }
   x: number = 12;
@@ -284,52 +284,6 @@ export class EchartsBoardComponent implements OnInit {
           color: 'red'
         }
       }
-    }]
-  };
-
-  optionScatter3D = {
-    backgroundColor: '#333',
-    tooltip: {},
-    visualMap: {
-      top: 30,    //类型标签置于坐标上方
-      type: 'piecewise',
-      calculable: true,
-      orient: 'horizontal',
-      left: 'center',
-      pieces: this.types.map(function (item) {
-        return {lte: item[0], gte: item[0], label: item[1], color: item[2], symbolSize: 30 /*散点大小*/}
-      }),
-    },
-    xAxis3D: {
-      type: 'value',
-      split: this.row.length,
-      data: this.row,
-    },
-    yAxis3D: {
-      type: 'value',
-      splitArea: 1,
-      data: [1,2]
-    },
-    zAxis3D: {
-      type: 'value',
-      splitNumber: 1,
-      // data: this.col
-    },
-    grid3D: {
-      axisLine: {
-        lineStyle: { color: '#fff' }
-      },
-      axisPointer: {
-        lineStyle: { color: '#fff' }
-      },
-      viewControl: {
-        // autoRotate: true
-      }
-    },
-    series: [{
-      type: 'scatter3D',
-      // symbol: 'rect',
-      data: this.data1
     }]
   };
 
