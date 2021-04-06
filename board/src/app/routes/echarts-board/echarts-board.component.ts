@@ -51,7 +51,8 @@ export class EchartsBoardComponent implements OnInit {
       formatter: (param: any) => {
         let source = param.value;
         return [
-          '坐标: x'+(source[0]+1)+',y'+(source[1]+1),
+          'Tire Details',
+          '坐标: x-'+(source[0]+1)+', y-'+(source[1]+1),
           "类型: "+source[3],
           "数量: "+source[2]
         ].join('<br/>')
@@ -155,10 +156,18 @@ export class EchartsBoardComponent implements OnInit {
         // },
       },
     ]
-  }
+  };
 
   option3D = {
     backgroundColor: '#333',
+    title: {
+      text: '轮胎库立体图',
+      left: 'center',
+      textStyle: {
+        // fontSize: 70,
+        color: 'rgba(255, 255, 255, 0.9)'
+      }
+    },
     tooltip: {},
     visualMap: {
       top: 30,
@@ -276,7 +285,53 @@ export class EchartsBoardComponent implements OnInit {
         }
       }
     }]
-  }
+  };
+
+  optionScatter3D = {
+    backgroundColor: '#333',
+    tooltip: {},
+    visualMap: {
+      top: 30,    //类型标签置于坐标上方
+      type: 'piecewise',
+      calculable: true,
+      orient: 'horizontal',
+      left: 'center',
+      pieces: this.types.map(function (item) {
+        return {lte: item[0], gte: item[0], label: item[1], color: item[2], symbolSize: 30 /*散点大小*/}
+      }),
+    },
+    xAxis3D: {
+      type: 'value',
+      split: this.row.length,
+      data: this.row,
+    },
+    yAxis3D: {
+      type: 'value',
+      splitArea: 1,
+      data: [1,2]
+    },
+    zAxis3D: {
+      type: 'value',
+      splitNumber: 1,
+      // data: this.col
+    },
+    grid3D: {
+      axisLine: {
+        lineStyle: { color: '#fff' }
+      },
+      axisPointer: {
+        lineStyle: { color: '#fff' }
+      },
+      viewControl: {
+        // autoRotate: true
+      }
+    },
+    series: [{
+      type: 'scatter3D',
+      // symbol: 'rect',
+      data: this.data1
+    }]
+  };
 
   occupancy = {
     backgroundColor: '#333',
